@@ -3,6 +3,7 @@ test.py
 test.ipynb
 model/
 credits.csv
+data_건강
 
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
