@@ -21,15 +21,16 @@
 <input type="text" name="weight">
 
 <div class="checks">
+    <input type="radio" id="bmi" name="bmi"> 
+    <label for="ex_rd">BMI 확인하기 </label> 
+</div>
+<div class="checks">
     <input type="radio" id="ex_rd" name="ex_rds"> 
     <label for="ex_rd">청력(좌)</label> 
     <input type="radio" id="ex_rd" name="ex_rds"> 
     <label for="ex_rd">청력(우)</label> 
-
-
-<button type="submit">확인</button>
-
 </div>
+<button type="submit">확인</button>
 
 </form>
     <p>성별: {{ gender }}</p>
