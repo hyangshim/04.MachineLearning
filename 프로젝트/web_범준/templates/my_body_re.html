@@ -1,0 +1,124 @@
+{% extends 'base.html'%}
+{% block additional_head %}
+<style>
+    th {
+        text-align: center;
+    }
+
+    button {
+        border-radius: 7%;
+    }
+
+    input {
+        width: 10%
+    }
+
+    h5>span {
+        background-color: rgb(254, 236, 253);
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+<div style=" padding-left:7%; padding-right:7%; margin-top: 10px;">
+    <h2>Result.</h2>
+    <hr>
+
+    <p>성별: {{ gender }}</p>
+    <p>나이: {{ age }}세</p>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th>연령대</th>
+            {% for age in age_list %}
+            <td align="center" class="item0" {% if loop.index==b %} style="background-color: lightpink; width: 7%;" {%
+                endif %}>{{ age.연령 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for age in age_list %}
+            <td align="center" class="item1" {% if loop.index==b %} style="background-color: lightpink;" {% endif %}>{{
+                age.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <p>연령대 평균 신장은 {{avg_height}}cm 입니다.</p>
+    <p>당신의 신장은 연령대 상위 {{c}}%입니다.</p>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th>신장</th>
+            {% for height in height_list %}
+            <td align="center" class="item0" {% if loop.index==c %} style="background-color: lightpink; width: 7%;" {%
+                endif %}>{{ height.신장 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for height in height_list %}
+            <td align="center" class="item1" {% if loop.index==c %} style="background-color: lightpink;" {% endif %}>{{
+                height.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <p>연령대 평균 체중은 {{avg_weight}}kg 입니다.</p>
+    <p>당신의 체중은 연령대 상위 {{d}}% 입니다.</p>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th>체중</th>
+            {% for weight in weight_list %}
+            <td align="center" class="item0" {% if loop.index==d %} style="background-color: lightpink; width: 7%;" {%
+                endif %}>{{ weight.체중 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for weight in weight_list %}
+            <td align="center" class="item1" {% if loop.index==d %} style="background-color: lightpink;" {% endif %}>{{
+                weight.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    <p>당신의 체질량지수는 {{bmi}} 입니다</p>
+    <p>연령대 평균 체질량지수는 {{avg_BMI}} 입니다.</p>
+    <p>당신의 체질량지수는 {{bmi_category}} 입니다.</p>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th>BMI</th>
+            {% for bmi in bmi_list %}
+            <td align="center" class="item0" {% if loop.index==x %} style="background-color: lightpink; width: 7%;" {%
+                endif %}>{{ bmi.BMI }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for bmi in bmi_list %}
+            <td align="center" class="item1" {% if loop.index==x %} style="background-color: lightpink;" {% endif %}>{{
+                bmi.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    <p>연령대 평균 허리둘레는 cm 입니다</p>
+    <p>당신의 허리둘레는 연령대 상위 % 입니다.</p>
+    <p>당신은 복부비만</p>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th>BMI</th>
+            {% for weight in weight_list %}
+            <td align="center" class="item0" {% if loop.index==d %} style="background-color: lightpink; width: 7%;" {%
+                endif %}>{{ weight.체중 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for weight in weight_list %}
+            <td align="center" class="item1" {% if loop.index==d %} style="background-color: lightpink;" {% endif %}>{{
+                weight.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <!-- 재실행버튼 -->
+    <!-- <p style="text-align: end;"><button onclick="location.href='/myhealth/disease'">재실행</button></p> -->
+</div>
+{% endblock %}

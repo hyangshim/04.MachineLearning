@@ -28,6 +28,8 @@ def age_gen(a) :
 def home():
     return render_template('home.html', weather=get_weather(app))
 
+
+
 @app.route('/diary')
 def diary():
     return render_template('diary.html', weather=get_weather(app))

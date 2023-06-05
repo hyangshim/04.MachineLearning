@@ -37,11 +37,16 @@ def age():
             {'신장': 145, '비율': 8.66},{'신장': 150, '비율': 22.52},{'신장': 155, '비율': 31.26},{'신장': 160, '비율': 23.97},
             {'신장': 165, '비율': 9.31},{'신장': 170, '비율': 1.77},{'신장': 175, '비율': 0.1},{'신장': 180, '비율': 0.0}]
     
-
-
+    M_height_avg=[{'나이': '20~24세', '평균키': 171.2},{'나이': '25~29세', '평균키': 171.96},{'나이': '30~34세', '평균키': 172.13},{'나이': '35~39세', '평균키': 171.99},
+                    {'나이': '40~44세', '평균키': 170.71},{'나이': '45~49세', '평균키': 169.46},{'나이': '50~54세', '평균키': 167.92},{'나이': '55~59세', '평균키': 166.69},{'나이': '60~64세', '평균키': 165.36},
+                    {'나이': '65~69세', '평균키': 163.97},{'나이': '70~74세', '평균키': 163.23},{'나이': '75~79세', '평균키': 162.23},{'나이': '80~84세', '평균키': 161.17},{'나이': '85세+', '평균키': 159.48}]
+    W_height_avg =[{'나이': '20~24세', '평균키': 158.98},{'나이': '25~29세', '평균키': 159.52},{'나이': '30~34세', '평균키': 159.37},
+                    {'나이': '35~39세', '평균키': 159.0},{'나이': '40~44세', '평균키': 157.95},{'나이': '45~49세', '평균키': 156.62},{'나이': '50~54세', '평균키': 155.17},
+                    {'나이': '55~59세', '평균키': 153.98},{'나이': '60~64세', '평균키': 152.7},{'나이': '65~69세', '평균키': 151.25},{'나이': '70~74세', '평균키': 150.21},{'나이': '75~79세', '평균키': 148.21},
+                    {'나이': '80~84세', '평균키': 146.35},{'나이': '85세+', '평균키': 144.49}]
 
     
-    M_weight = [{'체중': 40, '비율': 0.1},{'체중': 45, '비율': 0.77},{'체중': 50, '비율': 2.98},{'체중': 55, '비율': 7.13},{'체중': 60, '비율': 13.17},
+    M_weight = [{'체중': 40 , '비율': 0.1},{'체중': 45, '비율': 0.77},{'체중': 50, '비율': 2.98},{'체중': 55, '비율': 7.13},{'체중': 60, '비율': 13.17},
                 {'체중': 65, '비율': 17.9},{'체중': 70, '비율': 18.84},{'체중': 75, '비율': 15.15},{'체중': 80, '비율': 10.39},{'체중': 85, '비율': 6.16},
                 {'체중': 90, '비율': 3.49},{'체중': 95, '비율': 1.91},{'체중': 100, '비율': 1.02},{'체중': 105, '비율': 0.51},{'체중': 110, '비율': 0.26},{'체중': 115, '비율': 0.12},
                 {'체중': 120, '비율': 0.06},{'체중': 125, '비율': 0.02},{'체중': 130, '비율': 0.01},{'체중': 135, '비율': 0.0}] 
@@ -50,10 +55,21 @@ def age():
                 {'체중': 80, '비율': 1.15},{'체중': 85, '비율': 0.56},{'체중': 90, '비율': 0.23},{'체중': 95, '비율': 0.1},{'체중': 100, '비율': 0.04},
                 {'체중': 105, '비율': 0.01},{'체중': 110, '비율': 0.01},{'체중': 115, '비율': 0.0}]
     
-    M_W_BMI =[{'BMI': '13.0-18.5', '비율': 4.42},
- {'BMI': '18.5-24.0', '비율': 48.73},
- {'BMI': '24.0-29.5', '비율': 42.37},
- {'BMI': '29.5-35.0', '비율': 4.49}]
+    M_weight_avg =[{'나이': '20~24세', '평균 체중': 69.82},{'나이': '25~29세', '평균 체중': 73.17},{'나이': '30~34세', '평균 체중': 75.04},{'나이': '35~39세', '평균 체중': 75.15},{'나이': '40~44세', '평균 체중': 73.53},
+                    {'나이': '45~49세', '평균 체중': 71.82},{'나이': '50~54세', '평균 체중': 69.86},{'나이': '55~59세', '평균 체중': 68.11},{'나이': '60~64세', '평균 체중': 66.76},{'나이': '65~69세', '평균 체중': 65.09},
+                    {'나이': '70~74세', '평균 체중': 64.05},{'나이': '75~79세', '평균 체중': 62.19},{'나이': '80~84세', '평균 체중': 60.15},{'나이': '85세+', '평균 체중': 57.21}]
+    W_weight_avg =[{'나이': '20~24세', '평균 체중': 54.43},{'나이': '25~29세', '평균 체중': 54.43},{'나이': '30~34세', '평균 체중': 55.4},{'나이': '35~39세', '평균 체중': 56.09},
+                    {'나이': '40~44세', '평균 체중': 56.43},{'나이': '45~49세', '평균 체중': 56.43},{'나이': '50~54세', '평균 체중': 56.32},{'나이': '55~59세', '평균 체중': 55.95},{'나이': '60~64세', '평균 체중': 56.0},
+                    {'나이': '65~69세', '평균 체중': 55.67},{'나이': '70~74세', '평균 체중': 55.06},{'나이': '75~79세', '평균 체중': 53.1},{'나이': '80~84세', '평균 체중': 50.84},{'나이': '85세+', '평균 체중': 46.41}]
+    
+    M_BMI_avg =[{'나이': '20~24세', '평균체질량': 23.78},{'나이': '25~29세', '평균체질량': 24.7},{'나이': '30~34세', '평균체질량': 25.29},{'나이': '35~39세', '평균체질량': 25.38},{'나이': '40~44세', '평균체질량': 25.2},
+                {'나이': '45~49세', '평균체질량': 24.98},{'나이': '50~54세', '평균체질량': 24.75},{'나이': '55~59세', '평균체질량': 24.49},{'나이': '60~64세', '평균체질량': 24.38},
+                {'나이': '65~69세', '평균체질량': 24.18},{'나이': '70~74세', '평균체질량': 24.01},{'나이': '75~79세', '평균체질량': 23.6},{'나이': '80~84세', '평균체질량': 23.13},{'나이': '85세+', '평균체질량': 22.46}]
+    W_BMI_avg =[{'나이': '20~24세', '평균체질량': 21.51},{'나이': '25~29세', '평균체질량': 21.37},{'나이': '30~34세', '평균체질량': 21.8},{'나이': '35~39세', '평균체질량': 22.17},{'나이': '40~44세', '평균체질량': 22.61},
+                {'나이': '45~49세', '평균체질량': 23.0},{'나이': '50~54세', '평균체질량': 23.39},{'나이': '55~59세', '평균체질량': 23.59},{'나이': '60~64세', '평균체질량': 24.01},{'나이': '65~69세', '평균체질량': 24.33},
+                {'나이': '70~74세', '평균체질량': 24.39},{'나이': '75~79세', '평균체질량': 24.15},{'나이': '80~84세', '평균체질량': 23.7},{'나이': '85세+', '평균체질량': 22.2}]
+    
+    M_W_BMI =[{'BMI': '18.미만\n저체중', '비율': 4.42},{'BMI': '18.5-24.0\n 정상', '비율': 48.73},{'BMI': '25.0-30.0\n정상', '비율': 42.37},{'BMI': '30이상\n 비만', '비율': 4.49}]
         
     if request.method == 'GET':
         return render_template('my_body.html',)
@@ -61,28 +77,80 @@ def age():
         jm = int(request.values["jm"])
         height =int(request.values["height"])
         weight =int(request.values["weight"])
+        # waist =int(request.values["waist"])
         gender = age_gen(jm)[0]
         age = age_gen(jm)[1]
         b=1
         c=1
         d=1
+        z=1
+        x=1
         for i, j in zip(np.arange(20, 100, 5), np.arange(24, 104, 5)):
             if i <= age <= j:        #사용자 나이
                 break
             else:
                 b = b + 1    #몇번째 해당하는지 알려주는
+        if gender == '남성':
+            for item_height, item_bmi,item_weight in zip(M_height_avg, M_BMI_avg,M_weight_avg):
+                if item_height['나이'] == f"{i}~{j}세":
+                    avg_height = item_height['평균키']
+                    avg_BMI = item_bmi['평균체질량']
+                    avg_weight =item_weight['평균 체중']
+                    break  
+
+            bmi = round(weight / (height / 100) ** 2, 1)
+            bmi_category = ""
+            if bmi < 18.5:
+                bmi_category = "저체중"
+            elif bmi < 25:
+                bmi_category = "정상"
+            elif bmi < 30:
+                bmi_category = "과체중"
+            else:
+                bmi_category = "비만"
+         
+        elif gender == '여성':
+            for item_height, item_bmi,item_weight in zip(W_height_avg, W_BMI_avg,W_weight_avg):
+                if item_height['나이'] == f"{i}~{j}세":
+                    avg_height = item_height['평균키']
+                    avg_BMI = item_bmi['평균체질량']
+                    avg_weight =item_weight['평균 체중']
+                    break
+            bmi = round(weight / (height / 100) ** 2, 1)
+            bmi_category = ""
+            if bmi < 18.5:
+                bmi_category = "저체중"
+            elif bmi < 23:
+                bmi_category = "정상"
+            elif bmi < 25:
+                bmi_category = "과체중"
+            else:
+                bmi_category = "비만"
+
+        for m,w in zip(np.arange(13.0,29.5,5.5),np.arange(18.5,35.0,5.5)):
+            if m <=bmi <=w:
+                break
+            else:
+                x += x
+   
         if gender == '여성':
             for a, b in zip(np.arange(120, 176, 5), np.arange(125, 181, 5)):
                 if a <= height <= b:      
                     break
                 else:
-                    c = c + 1   
+                    c = c + 1  
+    
         elif gender == '남성':
             for i, j in zip(np.arange(140, 186, 5), np.arange(145, 191, 5)):
                 if i <= height <= j:       
                     break
                 else:
                     c = c + 1  
+        
+        percentile = round((1 - c) * 100,2)
+    
+        
+
         if gender == '여성':
             for i, j in zip(np.arange(25, 111, 5), np.arange(30, 116, 5)):
                 if i <= weight <= j:       
@@ -96,10 +164,41 @@ def age():
                     break
                 else:
                     d = d + 1  
+    # 허리 둘레
+    # waist_ranges = [60, 65, 70, 75, 80, 85, 90, 95, 100]
 
-        if gender == '남성':    
-            return render_template('my_body.html', age_list = male,age=str(age),height_list=M_height,weight_list=M_weight, gender=gender, b=b,c=c,d=d)
-        
-        elif gender == '여성':
-            return render_template('my_body.html', age_list = female,age=str(age),height_list=W_height, weight_list=W_weight,gender=gender, b=b)
-        
+    # waist_counts = [0] * len(waist_ranges)  # 허리둘레 범위별 개수를 저장할 리스트 초기화
+
+    # for waist in waist:
+    #     for i, range_value in enumerate(waist_ranges):
+    #         if waist < range_value:
+    #             waist_counts[i] += 1
+    #             break
+
+    # total_count = sum(waist_counts)  # 전체 데이터 개수 계산
+
+    # waist_percentages = [count / total_count * 100 for count in waist_counts]  # 비율 계산
+
+    # # 허리둘레 범위 출력
+    # for i, range_value in enumerate(waist_ranges):
+    #     print(f"허리둘레 {range_value}미만: {waist_percentages[i]:.1f}%")
+    # print(f"허리둘레 100이상: {waist_percentages[-1]:.1f}%")
+
+    # # 연령대 상위 백분율 계산
+    # cumulative_percentage = 0
+    # age_group_percentage = 33  # 연령대 상위 백분율
+
+    # for i, percentage in enumerate(waist_percentages):
+    #     cumulative_percentage += percentage
+    #     if cumulative_percentage >= age_group_percentage:
+    #         age_group_range = f"{waist_ranges[i-1]}미만" if i > 0 else "60미만"
+    #         z += z
+
+    
+
+    if gender == '남성':
+        return render_template('my_body_re.html', age_list = male,age=str(age),height_list=M_height,weight_list=M_weight, gender=gender, b=b,c=c,d=d,x=x,avg_height=avg_height,avg_BMI=avg_BMI,avg_weight=avg_weight, bmi=bmi,bmi_category=bmi_category,percentile=percentile,bmi_list=M_W_BMI)
+    
+    elif gender == '여성':
+        return render_template('my_body_re.html', age_list = female,age=str(age),height_list=W_height, weight_list=W_weight,gender=gender, b=b,c=c,d=d,x=x,avg_height=avg_height,avg_BMI=avg_BMI,avg_weight=avg_weight, bmi=bmi,bmi_category=bmi_category,percentile=percentile,bmi_list=M_W_BMI)
+

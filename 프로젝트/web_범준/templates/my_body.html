@@ -12,90 +12,28 @@
 <br>
 <h4>주민번호 뒷자리 첫번째 숫자까지 입력해주세요 (예시: 9912201):</h4>
 <form action="/myhealth/body" method="post">
-<input type="text" name="jm">
+    <input type="text" name="jm" value="{{jm}}">
 
-<h4>신장을 입력해주세요</h4>
-<input type="text" name="height">
 
-<h4>체중을 입력해주세요</h4>
-<input type="text" name="weight">
+    <div class="checks">
+        <h4>신장/체중을 입력해주세요</h4>
+        <input type="text" name="height" value="{{height}}">
+        <input type="text" name="weight" value="{{weight}}">
+        <input type="radio" id="bmi" name="bmi">
+        <label for="ex_rd">BMI 확인하기 </label>
+    </div>
+    <h4>허리 둘레를 입력해주세요</h4>
+    <input type="text" name="waist">
 
-<div class="checks">
-    <input type="radio" id="bmi" name="bmi"> 
-    <label for="ex_rd">BMI 확인하기 </label> 
-</div>
-<div class="checks">
-    <input type="radio" id="ex_rd" name="ex_rds"> 
-    <label for="ex_rd">청력(좌)</label> 
-    <input type="radio" id="ex_rd" name="ex_rds"> 
-    <label for="ex_rd">청력(우)</label> 
-</div>
-<button type="submit">확인</button>
+    <div class="checks">
+        <input type="radio" id="ex_rd" name="ex_rds">
+        <label for="ex_rd">청력(좌)</label>
+        <input type="radio" id="ex_rd" name="ex_rds">
+        <label for="ex_rd">청력(우)</label>
+    </div>
+    <button type="submit">확인</button>
 
 </form>
-    <p>성별: {{ gender }}</p>
-    <p>나이: {{ age }}세</p>
-    <table class="table table-bordered border-dark" style="font-size: 11px;">   
-        <tr>
-            <th>연령대</th>
-            {% for age in age_list %}  
-            <td align="center" class="item0" {% if loop.index == b %} style="background-color: lightpink; width: 7%;" {% endif %}>{{ age.연령 }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <th>비율</th>
-            {% for age in age_list %}
-            <td align="center" class="item1" {% if loop.index == b %} style="background-color: lightpink;" {% endif %}>{{ age.비율 }}</td>
-            {% endfor %}
-        </tr>
-    </table>
-    <p>연령대 평균 신장은 {{heigh}}cm입니다.</p>
-    <p>당신의 신장은 연령대 상위 {{c}}%입니다.</p>
-    <table class="table table-bordered border-dark" style="font-size: 11px;">   
-        <tr>
-            <th>신장</th>
-            {% for height in height_list %}  
-            <td align="center" class="item0" {% if loop.index == c %} style="background-color: lightpink; width: 7%;" {% endif %}>{{ height.신장 }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <th>비율</th>
-            {% for height in height_list %}
-            <td align="center" class="item1" {% if loop.index == c %} style="background-color: lightpink;" {% endif %}>{{ height.비율 }}</td>
-            {% endfor %}
-        </tr>
-    </table>
-
-    <table class="table table-bordered border-dark" style="font-size: 11px;">   
-        <tr>
-            <th>체중</th>
-            {% for weight in weight_list %}  
-            <td align="center" class="item0" {% if loop.index == d %} style="background-color: lightpink; width: 7%;" {% endif %}>{{ weight.체중 }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <th>비율</th>
-            {% for weight in weight_list %}
-            <td align="center" class="item1" {% if loop.index == d %} style="background-color: lightpink;" {% endif %}>{{ weight.비율 }}</td>
-            {% endfor %}
-        </tr>
-    </table>
-
-    <table class="table table-bordered border-dark" style="font-size: 11px;">   
-        <tr>
-            <th>BMI</th>
-            {% for weight in weight_list %}  
-            <td align="center" class="item0" {% if loop.index == d %} style="background-color: lightpink; width: 7%;" {% endif %}>{{ weight.체중 }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <th>비율</th>
-            {% for weight in weight_list %}
-            <td align="center" class="item1" {% if loop.index == d %} style="background-color: lightpink;" {% endif %}>{{ weight.비율 }}</td>
-            {% endfor %}
-        </tr>
-    </table>
-
 
 </body>
 
