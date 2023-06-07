@@ -43,7 +43,6 @@
         </tr>
     </table>
     <p>연령대 평균 신장은 {{avg_height}}cm 입니다.</p>
-    <p>당신의 신장은 연령대 상위 {{c}}%입니다.</p>
     <table class="table table-bordered border-dark" style="font-size: 11px;">
         <tr>
             <th>신장</th>
@@ -61,7 +60,6 @@
         </tr>
     </table>
     <p>연령대 평균 체중은 {{avg_weight}}kg 입니다.</p>
-    <p>당신의 체중은 연령대 상위 {{d}}% 입니다.</p>
     <table class="table table-bordered border-dark" style="font-size: 11px;">
         <tr>
             <th>체중</th>
@@ -84,9 +82,9 @@
     <p>당신의 체질량지수는 {{bmi_category}} 입니다.</p>
     <table class="table table-bordered border-dark" style="font-size: 11px;">
         <tr>
-            <th>BMI</th>
+            <th style="width: auto;">BMI</th>
             {% for bmi in bmi_list %}
-            <td align="center" class="item0" {% if loop.index==x %} style="background-color: lightpink; width: 7%;" {%
+            <td align="center" class="item0" {% if loop.index==x %} style="background-color: lightpink; width: 7%; width: auto;" {%
                 endif %}>{{ bmi.BMI }}</td>
             {% endfor %}
         </tr>
@@ -99,26 +97,100 @@
         </tr>
     </table>
 
-    <p>연령대 평균 허리둘레는 cm 입니다</p>
-    <p>당신의 허리둘레는 연령대 상위 % 입니다.</p>
-    <p>당신은 복부비만</p>
+    <p>연령대 평균 허리둘레는 {{avg_waist}}cm 입니다</p>
+    <p>당신은 복부비만{{waist_division}}</p>
     <table class="table table-bordered border-dark" style="font-size: 11px;">
         <tr>
-            <th>BMI</th>
-            {% for weight in weight_list %}
-            <td align="center" class="item0" {% if loop.index==d %} style="background-color: lightpink; width: 7%;" {%
-                endif %}>{{ weight.체중 }}</td>
+            <th>허리둘레</th>
+            {% for waist in waist_list %}
+            <td align="center" class="item0" {% if loop.index==MW %} style="background-color: lightpink; width: 7%;" {%
+                endif %}>{{ waist.허리둘레 }}</td>
             {% endfor %}
         </tr>
         <tr>
             <th>비율</th>
-            {% for weight in weight_list %}
-            <td align="center" class="item1" {% if loop.index==d %} style="background-color: lightpink;" {% endif %}>{{
-                weight.비율 }}</td>
+            {% for waist in waist_list %}
+            <td align="center" class="item1" {% if loop.index==MW %} style="background-color: lightpink;" {% endif %}>{{
+                waist.비율 }}</td>
             {% endfor %}
         </tr>
     </table>
-    <!-- 재실행버튼 -->
-    <!-- <p style="text-align: end;"><button onclick="location.href='/myhealth/disease'">재실행</button></p> -->
+
+    <p>연령대 평균 시력(좌){{avg_eye_left}}은 입니다.</p>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th>시력(좌)</th>
+            {% for eye_left in eye_left_list %}
+            <td align="center" class="item0" {% if loop.index==MW_E_L %} style="background-color: lightpink; width: 7%;" {%
+                endif %}>{{ eye_left.시력_좌 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for eye_left in eye_left_list %}
+            <td align="center" class="item1" {% if loop.index==MW_E_L %} style="background-color: lightpink;" {% endif %}>{{
+                eye_left.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    <p>연령대 평균 시력(우){{avg_eye_right}}은 입니다.</p>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th>시력(우)</th>
+            {% for eye_right in eye_right_list %}
+            <td align="center" class="item0" {% if loop.index==MW_E_R %} style="background-color: lightpink; width: 7%;" {%
+                endif %}>{{ eye_right.시력_우 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for eye_right in eye_right_list %}
+            <td align="center" class="item1" {% if loop.index==MW_E_R %} style="background-color: lightpink;" {% endif %}>{{
+                eye_right.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    <p>연령대 청력(좌) 비정상률은 {{avg_sound_left}}% 입니다.</p>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th style="width: auto;">청력(좌)</th>
+            {% for sound_left in sound_left_list %}
+            <td align="center" class="item0" {% if loop.index==SL %} style="background-color: lightpink; width: 7%; width: auto;" {%
+                endif %}>{{ sound_left.청력_좌 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for sound_left in sound_left_list %}
+            <td align="center" class="item1" {% if loop.index==SL %} style="background-color: lightpink;" {% endif %}>{{
+                sound_left.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    
+    <p>연령대 청력(우) 비정상률은 {{avg_sound_right}}% 입니다.</p>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th style="width: auto">청력(우)</th>
+            {% for sound_right in sound_right_list %}
+            <td align="center" class="item0" {% if loop.index==SR %} style="background-color: lightpink; width: 7%; width: auto;" {%
+                endif %}>{{ sound_right.청력_우 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for sound_right in sound_right_list %}
+            <td align="center" class="item1" {% if loop.index==SR %} style="background-color: lightpink;" {% endif %}>{{
+                sound_right.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    
+    <!-- 재실행버튼
+    <p style="text-align: end;"><button onclick="location.href='/myhealth/disease'">재실행</button></p> -->
 </div>
 {% endblock %}

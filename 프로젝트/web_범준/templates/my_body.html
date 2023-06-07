@@ -25,12 +25,24 @@
     <h4>허리 둘레를 입력해주세요</h4>
     <input type="text" name="waist">
 
+    <h4>시력(좌)/시력(우) 입력해주세요</h4>
+    <input type="text" name="eye_left">
+    <input type="text" name="eye_right">
+    
     <div class="checks">
-        <input type="radio" id="ex_rd" name="ex_rds">
-        <label for="ex_rd">청력(좌)</label>
-        <input type="radio" id="ex_rd" name="ex_rds">
-        <label for="ex_rd">청력(우)</label>
+        <input type="radio" id="ex_rd" name="sound_L" value="좌정상">
+        <label for="ex_rd">청력(좌) 정상</label>
+        <input type="radio" id="ex_rd" name="sound_L" value="좌비정상">
+        <label for="ex_rd">청력(좌) 비정상</label>
+        
     </div>
+    <div class="checks">
+        <input type="radio" id="ex_rd" name="sound_R" value="우정상">
+        <label for="ex_rd">청력(우) 정상</label>
+        <input type="radio" id="ex_rd" name="sound_R" value="우비정상">
+        <label for="ex_rd">청력(우) 비정상</label>
+    </div>
+
     <button type="submit">확인</button>
 
 </form>

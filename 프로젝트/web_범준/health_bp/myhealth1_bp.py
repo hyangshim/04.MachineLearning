@@ -44,7 +44,6 @@ def age():
                     {'나이': '35~39세', '평균키': 159.0},{'나이': '40~44세', '평균키': 157.95},{'나이': '45~49세', '평균키': 156.62},{'나이': '50~54세', '평균키': 155.17},
                     {'나이': '55~59세', '평균키': 153.98},{'나이': '60~64세', '평균키': 152.7},{'나이': '65~69세', '평균키': 151.25},{'나이': '70~74세', '평균키': 150.21},{'나이': '75~79세', '평균키': 148.21},
                     {'나이': '80~84세', '평균키': 146.35},{'나이': '85세+', '평균키': 144.49}]
-
     
     M_weight = [{'체중': 40 , '비율': 0.1},{'체중': 45, '비율': 0.77},{'체중': 50, '비율': 2.98},{'체중': 55, '비율': 7.13},{'체중': 60, '비율': 13.17},
                 {'체중': 65, '비율': 17.9},{'체중': 70, '비율': 18.84},{'체중': 75, '비율': 15.15},{'체중': 80, '비율': 10.39},{'체중': 85, '비율': 6.16},
@@ -69,6 +68,43 @@ def age():
                 {'나이': '45~49세', '평균체질량': 23.0},{'나이': '50~54세', '평균체질량': 23.39},{'나이': '55~59세', '평균체질량': 23.59},{'나이': '60~64세', '평균체질량': 24.01},{'나이': '65~69세', '평균체질량': 24.33},
                 {'나이': '70~74세', '평균체질량': 24.39},{'나이': '75~79세', '평균체질량': 24.15},{'나이': '80~84세', '평균체질량': 23.7},{'나이': '85세+', '평균체질량': 22.2}]
     
+    M_waist=[{'허리둘레': '0-60', '비율': 0.03},{'허리둘레': '60-65', '비율': 0.32},{'허리둘레': '65-70', '비율': 1.89},{'허리둘레': '70-75', '비율': 6.61},
+            {'허리둘레': '75-80', '비율': 14.72},{'허리둘레': '80-85', '비율': 24.27},{'허리둘레': '85-90', '비율': 23.67},{'허리둘레': '90-95', '비율': 15.72},{'허리둘레': '95-100', '비율': 7.79},{'허리둘레': '100이상', '비율': 4.99}]
+    
+    W_waist=[{'허리둘레': '0-60', '비율': 1.02},{'허리둘레': '60-65', '비율': 6.35},{'허리둘레': '65-70', '비율': 15.04},{'허리둘레': '70-75', '비율': 20.79},
+            {'허리둘레': '75-80', '비율': 20.13},{'허리둘레': '80-85', '비율': 16.86},{'허리둘레': '85-90', '비율': 10.48},
+            {'허리둘레': '90-95', '비율': 5.52},{'허리둘레': '95-100', '비율': 2.41},{'허리둘레': '100이상', '비율': 1.41}]
+    
+    M_waist_avg=[{'나이': '20~24세', '평균허리둘레': 80.33},{'나이': '25~29세', '평균허리둘레': 83.43},{'나이': '30~34세', '평균허리둘레': 85.49},{'나이': '35~39세', '평균허리둘레': 86.09},{'나이': '40~44세', '평균허리둘레': 85.76},
+                {'나이': '45~49세', '평균허리둘레': 85.44},{'나이': '50~54세', '평균허리둘레': 85.3},{'나이': '55~59세', '평균허리둘레': 85.28},{'나이': '60~64세', '평균허리둘레': 85.64},
+                {'나이': '65~69세', '평균허리둘레': 85.75},{'나이': '70~74세', '평균허리둘레': 86.03},{'나이': '75~79세', '평균허리둘레': 85.83},{'나이': '80~84세', '평균허리둘레': 85.24},{'나이': '85세+', '평균허리둘레': 83.59}]
+    
+    W_waist_avg=[{'나이': '20~24세', '평균허리둘레': 70.66},{'나이': '25~29세', '평균허리둘레': 70.68},{'나이': '30~34세', '평균허리둘레': 72.36},{'나이': '35~39세', '평균허리둘레': 73.58},
+                {'나이': '40~44세', '평균허리둘레': 74.77},{'나이': '45~49세', '평균허리둘레': 75.53},{'나이': '50~54세', '평균허리둘레': 76.9},{'나이': '55~59세', '평균허리둘레': 78.09},{'나이': '60~64세', '평균허리둘레': 79.84},
+                {'나이': '65~69세', '평균허리둘레': 81.29},{'나이': '70~74세', '평균허리둘레': 82.32},{'나이': '75~79세', '평균허리둘레': 82.68},{'나이': '80~84세', '평균허리둘레': 82.41},{'나이': '85세+', '평균허리둘레': 79.78}]
+    eye_left=[{'시력_좌': '0.2미만', '비율': 1.3},{'시력_좌': '0.2-0.4', '비율': 1.24},{'시력_좌': '0.4-0.6', '비율': 2.07},{'시력_좌': '0.6-0.8', '비율': 3.11},{'시력_좌': '0.8-1.0', '비율': 5.34},
+                {'시력_좌': '1.0-1.2', '비율': 5.52},{'시력_좌': '1.2-1.4', '비율': 8.58},{'시력_좌': '1.4-1.6', '비율': 10.04},{'시력_좌': '1.6-1.8', '비율': 10.71},{'시력_좌': '1.8-2.0', '비율': 20.33},{'시력_좌': '2.0이상', '비율': 0.02}]
+    
+    eye_right=[{'시력_우': '0.2미만', '비율': 1.32},{'시력_우': '0.2-0.4', '비율': 1.31},{'시력_우': '0.4-0.6', '비율': 2.04},{'시력_우': '0.6-0.8', '비율': 3.16},{'시력_우': '0.8-1.0', '비율': 5.2},
+                {'시력_우': '1.0-1.2', '비율': 5.44},{'시력_우': '1.2-1.4', '비율': 8.56},{'시력_우': '1.4-1.6', '비율': 10.0},{'시력_우': '1.6-1.8', '비율': 10.84},{'시력_우': '1.8-2.0', '비율': 20.74},{'시력_우': '2.0이상', '비율': 0.02}]
+    
+    eye_left_avg=[{'나이': '20~24세', '평균시력': 1.09},{'나이': '25~29세', '평균시력': 1.1},{'나이': '30~34세', '평균시력': 1.12},{'나이': '35~39세', '평균시력': 1.13},{'나이': '40~44세', '평균시력': 1.11},
+                    {'나이': '45~49세', '평균시력': 1.05},{'나이': '50~54세', '평균시력': 1.0},{'나이': '55~59세', '평균시력': 0.95},{'나이': '60~64세', '평균시력': 0.88},{'나이': '65~69세', '평균시력': 0.81},{'나이': '70~74세', '평균시력': 0.73},{'나이': '75~79세', '평균시력': 0.66},{'나이': '80~84세', '평균시력': 0.6},{'나이': '85세+', '평균시력': 0.51}]
+    
+    eye_right_avg=[{'나이': '20~24세', '평균시력': 1.08},{'나이': '25~29세', '평균시력': 1.09},{'나이': '30~34세', '평균시력': 1.11},{'나이': '35~39세', '평균시력': 1.13},
+                    {'나이': '40~44세', '평균시력': 1.11},{'나이': '45~49세', '평균시력': 1.05},{'나이': '50~54세', '평균시력': 1.0},{'나이': '55~59세', '평균시력': 0.95},
+                    {'나이': '60~64세', '평균시력': 0.88},{'나이': '65~69세', '평균시력': 0.81},{'나이': '70~74세', '평균시력': 0.74},{'나이': '75~79세', '평균시력': 0.67},{'나이': '80~84세', '평균시력': 0.61},{'나이': '85세+', '평균시력': 0.51}]
+    sound_left =[{'청력_좌': '정상', '비율': 96.61}, {'청력_좌': '비정상', '비율': 3.37}]
+    sound_right=[{'청력_우': '정상', '비율': 96.74}, {'청력_우': '비정상', '비율': 3.23}]
+    
+    sound_left_avg=[{'나이': '20~24세', '비정상 청력 비율': 0.29},{'나이': '25~29세', '비정상 청력 비율': 0.18},{'나이': '30~34세', '비정상 청력 비율': 0.32},{'나이': '35~39세', '비정상 청력 비율': 0.43},{'나이': '40~44세', '비정상 청력 비율': 0.7},
+                    {'나이': '45~49세', '비정상 청력 비율': 1.09},{'나이': '50~54세', '비정상 청력 비율': 1.8},{'나이': '55~59세', '비정상 청력 비율': 3.04},{'나이': '60~64세', '비정상 청력 비율': 4.81},
+                    {'나이': '65~69세', '비정상 청력 비율': 7.3},{'나이': '70~74세', '비정상 청력 비율': 11.71},{'나이': '75~79세', '비정상 청력 비율': 16.67},{'나이': '80~84세', '비정상 청력 비율': 21.07},{'나이': '85세+', '비정상 청력 비율': 27.92}]
+    sound_right_avg=[{'나이': '20~24세', '비정상 청력 비율': 0.22},{'나이': '25~29세', '비정상 청력 비율': 0.2},{'나이': '30~34세', '비정상 청력 비율': 0.35},{'나이': '35~39세', '비정상 청력 비율': 0.43},{'나이': '40~44세', '비정상 청력 비율': 0.67},
+                    {'나이': '45~49세', '비정상 청력 비율': 1.04},{'나이': '50~54세', '비정상 청력 비율': 1.75},{'나이': '55~59세', '비정상 청력 비율': 2.94},{'나이': '60~64세', '비정상 청력 비율': 4.62},
+                    {'나이': '65~69세', '비정상 청력 비율': 6.97},{'나이': '70~74세', '비정상 청력 비율': 11.09},{'나이': '75~79세', '비정상 청력 비율': 15.81},{'나이': '80~84세', '비정상 청력 비율': 20.59},{'나이': '85세+', '비정상 청력 비율': 26.84}]
+
+ 
     M_W_BMI =[{'BMI': '18.미만\n저체중', '비율': 4.42},{'BMI': '18.5-24.0\n 정상', '비율': 48.73},{'BMI': '25.0-30.0\n정상', '비율': 42.37},{'BMI': '30이상\n 비만', '비율': 4.49}]
         
     if request.method == 'GET':
@@ -77,25 +113,43 @@ def age():
         jm = int(request.values["jm"])
         height =int(request.values["height"])
         weight =int(request.values["weight"])
-        # waist =int(request.values["waist"])
+        waist =int(request.values["waist"])
+        eye_l=float(request.values["eye_left"])
+        eye_R=float(request.values["eye_right"])
+        sound_L=request.values['sound_L']
+        sound_R=request.values['sound_R']
+
         gender = age_gen(jm)[0]
         age = age_gen(jm)[1]
-        b=1
-        c=1
-        d=1
-        z=1
-        x=1
+        b=1           # 나이
+        c=1           # height
+        d=1           # weight
+        x=1           # bmi
+        MW=1          #허리둘레
+        MW_E_L=1      # 시력(좌)
+        MW_E_R=1      # 시력(우)
+        SL=1          # 청력(좌)
+        SR=1          # 청력(우)
+
+        
+
         for i, j in zip(np.arange(20, 100, 5), np.arange(24, 104, 5)):
             if i <= age <= j:        #사용자 나이
                 break
             else:
                 b = b + 1    #몇번째 해당하는지 알려주는
+
         if gender == '남성':
-            for item_height, item_bmi,item_weight in zip(M_height_avg, M_BMI_avg,M_weight_avg):
+            for item_height, item_bmi,item_weight,item_waist,item_eye_left,item_eye_right,item_sound_left,item_sound_right in zip(M_height_avg, M_BMI_avg,M_weight_avg,M_waist_avg,eye_left_avg,eye_right_avg,sound_left_avg,sound_right_avg):
                 if item_height['나이'] == f"{i}~{j}세":
                     avg_height = item_height['평균키']
                     avg_BMI = item_bmi['평균체질량']
                     avg_weight =item_weight['평균 체중']
+                    avg_waist=item_waist['평균허리둘레']
+                    avg_eye_left=item_eye_left['평균시력']
+                    avg_eye_right=item_eye_right['평균시력']
+                    avg_sound_left=item_sound_left['비정상 청력 비율']
+                    avg_sound_right=item_sound_right['비정상 청력 비율']
                     break  
 
             bmi = round(weight / (height / 100) ** 2, 1)
@@ -110,12 +164,18 @@ def age():
                 bmi_category = "비만"
          
         elif gender == '여성':
-            for item_height, item_bmi,item_weight in zip(W_height_avg, W_BMI_avg,W_weight_avg):
+            for item_height, item_bmi,item_weight,item_waist,item_eye_left,item_eye_right,item_sound_left,item_sound_right in zip(W_height_avg, W_BMI_avg,W_weight_avg,W_waist_avg,eye_left_avg,eye_right_avg,sound_left_avg,sound_right_avg):
                 if item_height['나이'] == f"{i}~{j}세":
                     avg_height = item_height['평균키']
                     avg_BMI = item_bmi['평균체질량']
                     avg_weight =item_weight['평균 체중']
+                    avg_waist=item_waist['평균허리둘레']
+                    avg_eye_left=item_eye_left['평균시력']
+                    avg_eye_right=item_eye_right['평균시력']
+                    avg_sound_left=item_sound_left['비정상 청력 비율']
+                    avg_sound_right=item_sound_right['비정상 청력 비율']
                     break
+
             bmi = round(weight / (height / 100) ** 2, 1)
             bmi_category = ""
             if bmi < 18.5:
@@ -132,7 +192,7 @@ def age():
                 break
             else:
                 x += x
-   
+        # 키
         if gender == '여성':
             for a, b in zip(np.arange(120, 176, 5), np.arange(125, 181, 5)):
                 if a <= height <= b:      
@@ -150,7 +210,7 @@ def age():
         percentile = round((1 - c) * 100,2)
     
         
-
+        #몸무게
         if gender == '여성':
             for i, j in zip(np.arange(25, 111, 5), np.arange(30, 116, 5)):
                 if i <= weight <= j:       
@@ -164,41 +224,55 @@ def age():
                     break
                 else:
                     d = d + 1  
-    # 허리 둘레
-    # waist_ranges = [60, 65, 70, 75, 80, 85, 90, 95, 100]
+        # 허리둘레
+        for i, j in zip([0 , *np.arange(60, 101, 5)], [*np.arange(60, 101, 5), 10000]):
+            if i <= waist <= j:        
+                break
+            else:
+                MW = MW + 1   
 
-    # waist_counts = [0] * len(waist_ranges)  # 허리둘레 범위별 개수를 저장할 리스트 초기화
+       # 복부비만 판별
+        if gender == '남성':
+            if waist >= 90:
+                waist_division=(' 입니다.')
+            else:
+                waist_division=('이 아닙니다.')
+        if gender == '여성':
+            if waist >= 85:
+                waist_division=(' 입니다.')
+            else:
+                waist_division=('이 아닙니다.')
+        # 시력(좌)
+        for i, j in zip([0 , *np.arange(0.2, 2.5, 0.2)], [*np.arange(0.2, 2.5, 0.2), 10]):
+            if i <= eye_l <= j:        
+                break
+            else:
+                MW_E_L = MW_E_L + 1  
+        # 시력(우)
+        for i, j in zip([0 , *np.arange(0.2, 2.5, 0.2)], [*np.arange(0.2, 2.5, 0.2), 10]):
+            if i <= eye_R <= j:        
+                break
+            else:
+                MW_E_R = MW_E_R + 1  
+        # 청력
+        if sound_L == '좌정상':
+            SL = 1
+        else:
+            SL = 2
+        # 청력
+        if sound_R == '우정상':
+            SR = 1
+        else:
+            SR = 2
 
-    # for waist in waist:
-    #     for i, range_value in enumerate(waist_ranges):
-    #         if waist < range_value:
-    #             waist_counts[i] += 1
-    #             break
-
-    # total_count = sum(waist_counts)  # 전체 데이터 개수 계산
-
-    # waist_percentages = [count / total_count * 100 for count in waist_counts]  # 비율 계산
-
-    # # 허리둘레 범위 출력
-    # for i, range_value in enumerate(waist_ranges):
-    #     print(f"허리둘레 {range_value}미만: {waist_percentages[i]:.1f}%")
-    # print(f"허리둘레 100이상: {waist_percentages[-1]:.1f}%")
-
-    # # 연령대 상위 백분율 계산
-    # cumulative_percentage = 0
-    # age_group_percentage = 33  # 연령대 상위 백분율
-
-    # for i, percentage in enumerate(waist_percentages):
-    #     cumulative_percentage += percentage
-    #     if cumulative_percentage >= age_group_percentage:
-    #         age_group_range = f"{waist_ranges[i-1]}미만" if i > 0 else "60미만"
-    #         z += z
-
-    
 
     if gender == '남성':
-        return render_template('my_body_re.html', age_list = male,age=str(age),height_list=M_height,weight_list=M_weight, gender=gender, b=b,c=c,d=d,x=x,avg_height=avg_height,avg_BMI=avg_BMI,avg_weight=avg_weight, bmi=bmi,bmi_category=bmi_category,percentile=percentile,bmi_list=M_W_BMI)
+        return render_template('my_body_re.html', age_list = male,age=str(age),height_list=M_height,weight_list=M_weight, gender=gender, b=b,c=c,d=d,x=x,MW=MW,MW_E_L=MW_E_L,MW_E_R=MW_E_R,SL=SL,SR=SR,
+                               avg_height=avg_height,avg_BMI=avg_BMI,avg_weight=avg_weight, bmi=bmi,bmi_category=bmi_category,percentile=percentile,bmi_list=M_W_BMI,
+                               waist_list=M_waist,waist_division=waist_division,avg_waist=avg_waist,eye_left_list=eye_left,eye_right_list=eye_right,avg_eye_left=avg_eye_left,avg_eye_right=avg_eye_right,sound_left_list=sound_left,sound_right_list=sound_right,avg_sound_left=avg_sound_left,avg_sound_right=avg_sound_right)
     
     elif gender == '여성':
-        return render_template('my_body_re.html', age_list = female,age=str(age),height_list=W_height, weight_list=W_weight,gender=gender, b=b,c=c,d=d,x=x,avg_height=avg_height,avg_BMI=avg_BMI,avg_weight=avg_weight, bmi=bmi,bmi_category=bmi_category,percentile=percentile,bmi_list=M_W_BMI)
+        return render_template('my_body_re.html', age_list = female,age=str(age),height_list=W_height, weight_list=W_weight,gender=gender, b=b,c=c,d=d,x=x,MW=MW,MW_E_L=MW_E_L,MW_E_R=MW_E_R,SL=SL,SR=SR,
+                               avg_height=avg_height,avg_BMI=avg_BMI,avg_weight=avg_weight, bmi=bmi,bmi_category=bmi_category,percentile=percentile,bmi_list=M_W_BMI,
+                               waist_list=W_waist,waist_division=waist_division,avg_waist=avg_waist,eye_left_list=eye_left,eye_right_list=eye_right,avg_eye_left=avg_eye_left,avg_eye_right=avg_eye_right,sound_left_list=sound_left,sound_right_list=sound_right,avg_sound_left=avg_sound_left,avg_sound_right=avg_sound_right)
 
