@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/b822b7b38d.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <title>{% block title %}건강이와함께{% endblock %}</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/my.js') }}" > </script>
+    <script src="{{url_for('static', filename='js/ajax.js')}}"></script>
+    <!-- 바디랑 왼쪽 사이드바 스크롤 기능 -->
+    <style>        
+        .left_sub_menu1, .left_sub_menu2 {
+            height: 90vh;
+            overflow-y: auto;
+        }
+    </style>
+{% block additional_head %}{% endblock %}
+</head>
+
+<body>
+<div>
+    <!-- 상단 네비게이션바 -->
+    <nav class="navbar navbar-expand-sm border-bottom">
+        <div class="container-fluid" id="topbanner">
+            <a class="navbar-brand" href="/" style="margin-left:60px"><img src="{{url_for('static', filename='img/로고.png')}}" height="70" width="84"></a>
+            <ul class="navbar-nav"> 
+                <span class="nav-bar me-3 align-self-center" style="color:rgb(0, 0, 0); font-size: 17px;">
+                    {% block weather%}{{ weather|safe() }}{% endblock %}
+					{% if session['uid'] %}
+                    <br><i class="fa-solid fa-user"></i>&nbsp;{{ session['uname'] }}님 환영합니다.
+					{% endif %}
+				</span>
+            </ul>
+        </div>
+    </nav>
+    <!-- 사이드바 -->
+    <header>
+        <div id="wrapper">
+            <div class="topbar">
+                <!-- 왼쪽 메뉴 -->
+                <div class="left side-menu">
+                    <div class="sidebar-inner">
+                        <div id="sidebar-menu">
+                            <ul style="margin-top: 70px;">
+                                <li class="has_sub1"><a href="javascript:void(0);" class="waves-effect">
+                                    <i class="fas fa-bars" style="color:white;"></i>
+                                </a></li>
+                                <li class="has_sub2" style="text-align:center;  margin-top:10px;"><a href="javascript:void(0);" class="waves-effect">
+                                    <i class="fa-solid fa-clipboard" style="color:white; font-size:23px"></i>
+                                </a></li>
+                                <li class="item2" style="text-align: center; margin-top:10px">
+                                    {% if session['uid'] %}
+                                        <a href="/user/logout" class="nav-link"><i class="fa-solid fa-right-from-bracket"
+                                            style="color:white;"></i></a>
+                                    {% else %}
+                                        <a href="/user/login" class="nav-link"><i class="fa-solid fa-right-from-bracket"
+                                            style="color:white;"></i></a>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- 왼쪽 서브 메뉴1 -->
+                <div class="left_sub_menu1" style="color:black">
+                    <div class="sub_menu1">
+                        <h2>데이터 분석</h2>
+                        <ul class="big_menu">
+                            <li>건강검진 현황<br>신체 현황 <i class="arrow fas fa-angle-right"></i></li>
+                            <ul class="small_menu">
+                                <a href="/hscs/height"><li>신장</li></a>
+                                <a href="/hscs/weight"><li>체중</li></a>
+                                <a href="/hscs/obsesity"><li>비만율</li></a>
+                                <a href="/hscs/waist"><li>허리둘레</li></a>
+                                <a href="/hscs/obsesity2"><li>복부비만율</li></a>
+                                <a href="/hscs/sight"><li>시력</li></a>
+                                <a href="/hscs/hearing"><li>청력</li></a>
+                            </ul>
+                        </ul>
+                        <ul class="big_menu">
+                            <li>건강검진 현황<br>질환 유병률 <i class="arrow fas fa-angle-right"></i></li>
+                            <ul class="small_menu">
+                                <a href="/hscs/smkrate"><li>흡연률</li></a>
+                                <a href="/hscs/drkrate"><li>음주율</li></a>
+                                <a href="/hscs/highbp"><li>고혈압</li></a>
+                                <a href="/hscs/diabetes"><li>당뇨병</li></a>
+                                <a href="/hscs/dyslipidemia"><li>이상지질혈증</li></a>
+                                <a href="/hscs/anemia"><li>빈혈</li></a>
+                                <a href="/hscs/kdndisease"><li>신장질환</li></a>
+                                <a href="/hscs/livdisease"><li>간질환</li></a>
+                            </ul>
+                        </ul>
+                        <ul class="big_menu">
+                            <li>질환 유병률 분석 <i class="arrow fas fa-angle-right"></i></li>
+                            <ul class="small_menu">
+                                <a href="/analysis/highbp"><li>고혈압</li></a>
+                                <a href="/analysis/diabetes"><li>당뇨병</li></a>
+                                <a href="/analysis/dyslipidemia"><li>이상지질혈증</li></a>
+                                <a href="/analysis/anemia"><li>빈혈</li></a>
+                                <a href="/analysis/kdndisease"><li>신장질환</li></a>
+                                <a href="/analysis/livdisease"><li>간질환</li></a>
+                            </ul>
+                        </ul>
+                        <ul class="big_menu">
+                            <a href="/myhealth/disease"><li> 나의 건강 </li> </a>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 왼쪽 서브 메뉴2 -->
+                <div class="left_sub_menu2" style="color:black">
+                    <div class="sub_menu2">
+                        <h2>건강검진결과 관리</h2>
+                        <ul class="big_menu">
+                            <li><a href="/screening/input">건강검진 결과<br>입력 및 저장 <i class="arrow fas fa-angle-right"></i></a></li>
+                        </ul>
+                        <ul class="big_menu">
+                            <li><a href="/screening/output">지난 건강검진<br>결과 보기 <i class="arrow fas fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="overlay" style="display:none"></div> 
+            </div>
+    </header>
+    <!-- 메인 영역 -->
+    <div class="container" id="maincontainer">
+        {% block main %}{% endblock %}
+        {% block additional_body %}{% endblock %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <script>
+                    alert("{{ messages[-1] }}")
+                </script>
+            {% endif %}
+        {% endwith %}
+    </div>
+</div>
+</body>
+</html>

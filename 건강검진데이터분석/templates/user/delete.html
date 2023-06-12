@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}회원 탈퇴{% endblock %}
+{% block weather %}{{ weather | safe() }}{% endblock %}
+{% block subtitle %}회원 탈퇴{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card border-warning mt-3">
+                <div class="card-body">
+                    <strong class="card-title">탈퇴하시겠습니까?</strong>
+                    <p class="card-text text-center">
+                        <br>
+                        <button class="btn btn-primary" onclick="location.href='/user/delete_confirm/{{uid}}'">삭제</button>
+                        <button class="btn btn-secondary ms-1" onclick="location.href='/user/list'">취소</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+{% endblock %}

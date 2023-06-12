@@ -1,0 +1,99 @@
+{% extends 'base.html'%}
+{% block additional_head %}
+<style>
+    th {
+        text-align: center;
+    }
+    button {
+        border-radius: 7%;
+    }
+    input {
+        width:10%; height: 80%;
+    }
+</style>
+{% endblock %}
+{% block main %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <script>
+        alert("{{ messages[-1] }}")
+    </script>
+{% endif %}
+{% endwith %}
+<div style="padding-left:17%; padding-right:17%">
+    <h2 style="margin-top: 20px; font-weight: bolder;">건강검진 결과 저장</h2><hr>
+    <h5 style="margin-top: 20px; font-weight: bolder;">데이터 미입력시 0으로 기록 됨.</h5><hr>
+    <form action="/screening/input" method="post">
+    <span style="display:none"><input type="text" name="uid" style="height:80%" value="{{ session['uid'] }}"></span>
+    <div class="row">
+        <div class="col">
+            <span>체중 : &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="weight" style="width:15%"> kg</span>
+        </div>
+        <div class="col">
+            <span>허리둘레 : <input type="text" name="waist" style="width:13%"> cm</span>
+        </div>
+    </div><hr>
+    <div class="row">
+        <div class="col">
+            <span>시력(좌) : <input type="text" name="eye_left"></span>
+        </div>
+        <div class="col">
+            <span>시력(우) : <input type="text" name="eye_right"></span>
+        </div>
+    </div><hr>
+    <div class="row">
+        <div class="col">
+            <span>수축기혈압 : <input type="text" name="bp1"> mmHg</span>
+        </div>
+        <div class="col">
+            <span>이완기혈압 수치 : </span><input type="text" name="bp2"> mmHg
+        </div>
+    </div><hr>
+    <div class="row">
+        <div class="col">
+            <span>공복혈당 수치 : <input type="text" name="bs"> mg/dL</span>
+        </div>
+        <div class="col">
+            <span>트리글리세라이드 수치 : <input type="text" name="tg"> mg/dL</span>
+        </div>
+    </div><hr>
+    <div class="row">
+        <div class="col">
+            <span>HDL콜레스테롤 수치 : <input type="text" name="hdl"> mg/dL</span>
+        </div>
+        <div class="col">
+            <span>LDL콜레스테롤 수치 : <input type="text" name="ldl"> mg/dL</span>
+        </div>
+    </div><hr>
+    <div class="row">
+        <div class="col">
+            <span>혈색소 수치 : <input type="text" name="hg"> g/dL</span>
+        </div>
+        <div class="col">
+            <span>요단백 수치 : <input type="text" name="up"> g/dL</span>
+        </div>
+    </div><hr>
+    <div class="row">
+        <div class="col">
+            <span>혈청크레아티닌 수치 : <input type="text" name="bc"> IU/dL</span>
+        </div>
+        <div class="col">
+            <span>감마GPT 수치 : <input type="text" name="gpt"> IU/dL</span>
+        </div>
+    </div><hr>
+    <div class="row">
+        <div class="col">
+            <span>혈청지오티AST 수치 : <input type="text" name="ast"> IU/dL</span>
+        </div>
+        <div class="col">
+            <span>혈청지오티ALT 수치 : <input type="text" name="alt"> IU/dL</span>
+        </div>
+    </div><hr>
+    <div class="row">
+        <div class="col">
+            <div style="text-align: end;"><button type="submit">확인</button></div>
+        </div>
+    </div>
+    </div>
+    </form>
+{% endblock %}

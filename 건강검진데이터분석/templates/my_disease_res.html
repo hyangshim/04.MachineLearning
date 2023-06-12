@@ -1,0 +1,593 @@
+{% extends 'base.html'%}
+{% block additional_head %}
+<style>
+    th {
+        text-align: center;
+    }
+
+    button {
+        border-radius: 7%;
+    }
+
+    input {
+        width: 10%
+    }
+
+    h5>span {
+        background-color: rgb(254, 236, 253);
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<script>
+    alert("{{ messages[-1] }}")
+</script>
+{% endif %}
+{% endwith %}
+<div style=" padding-left:7%; padding-right:7%; margin-top: 10px;">
+    <h2>Result.</h2>
+    <hr>
+
+    <!-- 성별 result -->
+    <p><span>성별 : {{ gender }} /&nbsp;</span><span> 나이 : {{ age }}세 / desc. 각 분석결과는 {{ session['uname'] }}님 연령대를 토대로한
+            결과입니다.</span></p>
+    <h5><span>연령대별 데이터 분포</span></h5>
+    <table class="table table-bordered border-dark" style="font-size: 13px; margin-top: 15px;">
+        <tr>
+            <th>연령대</th>
+            {% for age in age_list %}
+            <td align="center" class="item0" {% if loop.index==b %}
+                style="background-color: lightpink; width: 7%; font-weight: bolder;" {% endif %}>{{ age.연령 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for age in age_list %}
+            <td align="center" class="item1" {% if loop.index==b %}
+                style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ age.비율 }}%</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <h5 style="margin-top:30px"><span>연령대별 신장데이터 분포</span></h5>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th>신장</th>
+            {% for height in height_list %}
+            <td align="center" class="item0" {% if loop.index==c_ %} style="background-color: lightpink; width: 7%;" {%
+                endif %}>{{ height.신장 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for height in height_list %}
+            <td align="center" class="item1" {% if loop.index==c_ %} style="background-color: lightpink;" {% endif %}>{{
+                height.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <p>연령대 평균 신장은 {{avg_height}}cm 입니다.</p>
+    <h5 style="margin-top:30px"><span>연령대별 체중데이터 분포</span></h5>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th>체중</th>
+            {% for weight in weight_list %}
+            <td align="center" class="item0" {% if loop.index==d_ %} style="background-color: lightpink; width: 7%;" {%
+                endif %}>{{ weight.체중 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for weight in weight_list %}
+            <td align="center" class="item1" {% if loop.index==d_ %} style="background-color: lightpink;" {% endif %}>{{
+                weight.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <p>연령대 평균 체중은 {{avg_weight}}kg 입니다.</p>
+    <p>{{ session['uname'] }}님의 체질량지수는 {{bmi}}이고, 연령대 평균 체질량지수는 {{avg_BMI}} 입니다.</p>
+    <p>{{ session['uname'] }}님의 체질량지수는 {{bmi_category}} 입니다.</p>
+    <h5 style="margin-top:30px"><span>BMI데이터 분포</span></h5>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th style="width: auto;">BMI</th>
+            {% for bmi in bmi_list %}
+            <td align="center" class="item0" {% if loop.index==x %}
+                style="background-color: lightpink; width: 7%; width: auto;" {% endif %}>{{ bmi.BMI }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for bmi in bmi_list %}
+            <td align="center" class="item1" {% if loop.index==x %} style="background-color: lightpink;" {% endif %}>{{
+                bmi.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    <h5 style="margin-top:30px"><span>연령대/성별 허리둘레데이터 분포</span></h5>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th>허리둘레</th>
+            {% for waist in waist_list %}
+            <td align="center" class="item0" {% if loop.index==MW %} style="background-color: lightpink; width: 7%;" {%
+                endif %}>{{ waist.허리둘레 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for waist in waist_list %}
+            <td align="center" class="item1" {% if loop.index==MW %} style="background-color: lightpink;" {% endif %}>{{
+                waist.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <p>연령대 평균 허리둘레는 {{avg_waist}}cm 이고, {{ session['uname'] }}님은 복부비만{{waist_division}}</p>
+
+    <h5 style="margin-top:30px"><span>연령대별 시력데이터 분포</span></h5>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th>시력(좌)</th>
+            {% for eye_left in eye_left_list %}
+            <td align="center" class="item0" {% if loop.index==MW_E_L %} style="background-color: lightpink; width: 7%;"
+                {% endif %}>{{ eye_left.시력_좌 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for eye_left in eye_left_list %}
+            <td align="center" class="item1" {% if loop.index==MW_E_L %} style="background-color: lightpink;" {% endif
+                %}>{{
+                eye_left.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <p>연령대 평균 시력(좌)는 {{avg_eye_left}} 입니다.</p>
+
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th>시력(우)</th>
+            {% for eye_right in eye_right_list %}
+            <td align="center" class="item0" {% if loop.index==MW_E_R %} style="background-color: lightpink; width: 7%;"
+                {% endif %}>{{ eye_right.시력_우 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for eye_right in eye_right_list %}
+            <td align="center" class="item1" {% if loop.index==MW_E_R %} style="background-color: lightpink;" {% endif
+                %}>{{
+                eye_right.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <p>연령대 평균 시력(우)는 {{avg_eye_right}}입니다.</p>
+
+    <h5 style="margin-top:30px"><span>연령대별 청력데이터 분포</span></h5>
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th style="width: auto;">청력(좌)</th>
+            {% for sound_left in sound_left_list %}
+            <td align="center" class="item0" {% if loop.index==SL %}
+                style="background-color: lightpink; width: 7%; width: auto;" {% endif %}>{{ sound_left.청력_좌 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for sound_left in sound_left_list %}
+            <td align="center" class="item1" {% if loop.index==SL %} style="background-color: lightpink;" {% endif %}>{{
+                sound_left.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <p>연령대 청력(좌) 비정상률은 {{avg_sound_left}}% 입니다.</p>
+
+
+    <table class="table table-bordered border-dark" style="font-size: 11px;">
+        <tr>
+            <th style="width: auto">청력(우)</th>
+            {% for sound_right in sound_right_list %}
+            <td align="center" class="item0" {% if loop.index==SR %}
+                style="background-color: lightpink; width: 7%; width: auto;" {% endif %}>{{ sound_right.청력_우 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for sound_right in sound_right_list %}
+            <td align="center" class="item1" {% if loop.index==SR %} style="background-color: lightpink;" {% endif %}>{{
+                sound_right.비율 }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <p>연령대 청력(우) 비정상률은 {{avg_sound_right}}% 입니다.</p>
+    <!-- 혈압 result -->
+    <h5 style="margin-top:30px"><span>혈압수치 분석결과</span></h5>
+    <table class="table table-bordered border-dark" style="font-size: 13px; margin-top: 15px;">
+        <tr>
+            <th>수축기 혈압</th>
+            {% for su in su_list %}
+            <td align="center" class="item0" {% if loop.index==c %}
+                style="background-color: lightpink; width: 7%; font-weight: bolder;" {% endif %}>{{ su.혈압 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for su in su_list %}
+            <td align="center" class="item1" {% if loop.index==c %}
+                style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ su.비율 }}%</td>
+            {% endfor %}
+        </tr>
+        <tr align="center">
+            <th>고혈압</th>
+            <td colspan="3" {% if 1<=c <=3 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상
+            </td>
+            <td colspan="4" {% if 4<=c <=7 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>전단계
+            </td>
+            <td colspan="3" {% if 8<=c <=10 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>유병자
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered border-dark" style="font-size: 13px; margin-top:15px">
+        <tr>
+            <th>이완기 혈압</th>
+            {% for iw in iw_list %}
+            <td align="center" class="item0" {% if loop.index==d %}
+                style="background-color: lightpink; width: 7%; font-weight: bolder;" {% endif %}>{{ iw.혈압 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for iw in iw_list %}
+            <td align="center" class="item1" {% if loop.index==d %}
+                style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ iw.비율 }}%</td>
+            {% endfor %}
+        </tr>
+        <tr align="center">
+            <th>고혈압</th>
+            <td colspan="3" {% if 1<=d <=3 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상
+            </td>
+            <td colspan="4" {% if 4<=d <=7 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>전단계
+            </td>
+            <td colspan="3" {% if 8<=d <=10 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>유병자
+            </td>
+        </tr>
+    </table>
+    <p><span>연령대 평균 수축기 혈압은 <span style="font-weight: bold;">{{ scg }}mmHg</span> 이고,</span>
+        <span>평균 이완기 혈압은 <span style="font-weight: bold;">{{ iwg }}mmHg</span> 입니다.</span>
+    </p>
+
+    <!-- 공복혈당 result -->
+    <h5 style="margin-top:30px"><span>공복혈당 분석결과</span></h5>
+    <table class="table table-bordered border-dark" style="font-size: 13px; margin-top: 15px;">
+        <tr>
+            <th>공복혈당</th>
+            {% for gbhd in gbhd_list %}
+            <td align="center" class="item0" {% if loop.index==f %}
+                style="background-color: lightpink; width: 7%; font-weight: bolder;" {% endif %}>{{ gbhd.혈당 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for gbhd in gbhd_list %}
+            <td align="center" class="item1" {% if loop.index==f %}
+                style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ gbhd.비율 }}%</td>
+            {% endfor %}
+        </tr>
+        <tr align="center">
+            <th>당뇨병</th>
+            <td {% if f==1 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상</td>
+            <td {% if f==2 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>공복혈당장애</td>
+            <td {% if f==3 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>유병자</td>
+        </tr>
+    </table>
+    <p><span>연령대 평균 공복혈당은 <span style="font-weight: bold;">{{ scg }}mg/dL</span> 이며,
+        </span></span><span style="font-weight: bold;">{{ session['uname'] }}님은 당뇨병 유병자{{ dnb}}</span></p>
+
+    <!-- 콜레스테롤 result -->
+    <h5 style="margin-top:30px"><span>콜레스테롤수치 분석결과</span></h5>
+    <div class="row" style="margin-top:15px">
+        <div class="col">
+            <table class="table table-bordered border-dark" style="font-size: 13px;">
+                <tr>
+                    <th style="width:auto">트리글리세라이드</th>
+                    {% for tgs in tgs_list %}
+                    <td align="center" class="item0" {% if loop.index==h %}
+                        style="background-color: lightpink; width: 7%; font-weight: bolder; width:auto" {% endif %}>{{
+                        tgs.혈압 }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>비율</th>
+                    {% for tgs in tgs_list %}
+                    <td align="center" class="item1" {% if loop.index==h %}
+                        style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ tgs.비율 }}%</td>
+                    {% endfor %}
+                </tr>
+                <tr align="center">
+                    <th>이상지질혈증</th>
+                    <td {% if h==1 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상</td>
+                    <td {% if h==2 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>전단계</td>
+                    <td {% if h==3 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>유병자</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table table-bordered border-dark" style="font-size: 13px;">
+                <tr>
+                    <th style="width:auto">HDL 콜레스테롤</th>
+                    {% for hdl in hdldict_list %}
+                    <td align="center" class="item0" {% if loop.index==hdlc %} style="background-color: lightpink; width: 7%;
+                 font-weight: bolder; width:auto" {% endif %}>{{ hdl.혈압 }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>비율</th>
+                    {% for hdl in hdldict_list %}
+                    <td align="center" class="item1" {% if loop.index==hdlc %}
+                        style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ hdl.비율 }}%</td>
+                    {% endfor %}
+                </tr>
+                <tr align="center">
+                    <th>이상지질혈증</th>
+                    <td {% if hdlc==1 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상</td>
+                    <td {% if hdlc==2 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>전단계</td>
+                    <td {% if hdlc==3 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>유병자</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-bordered border-dark" style="font-size: 13px;">
+                <tr>
+                    <th style="width:auto">LDL 콜레스테롤</th>
+                    {% for ldl in ldldict_list %}
+                    <td align="center" class="item0" {% if loop.index==ldlc %} style="background-color: lightpink; width: 7%;
+                 font-weight: bolder; width:auto" {% endif %}>{{ ldl.혈압 }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>비율</th>
+                    {% for ldl in ldldict_list %}
+                    <td align="center" class="item1" {% if loop.index==ldlc %}
+                        style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ ldl.비율 }}%</td>
+                    {% endfor %}
+                </tr>
+                <tr align="center">
+                    <th>이상지질혈증</th>
+                    <td {% if ldlc==1 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상</td>
+                    <td {% if ldlc==2 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>전단계</td>
+                    <td {% if ldlc==3 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>유병자</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table table-bordered border-dark" style="font-size: 13px;">
+                <tr>
+                    <th style="width:auto">총 콜레스테롤</th>
+                    {% for ttc in ttcdict_list %}
+                    <td align="center" class="item0" {% if loop.index==k %} style="background-color: lightpink; width: 7%; font-weight: bolder;
+                width: auto;" {% endif %}>{{ ttc.혈압 }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>비율</th>
+                    {% for ttc in ttcdict_list %}
+                    <td align="center" class="item1" {% if loop.index==k %}
+                        style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ ttc.비율 }}%</td>
+                    {% endfor %}
+                </tr>
+                <tr align="center">
+                    <th>이상지질혈증</th>
+                    <td {% if k==1 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상</td>
+                    <td {% if k==2 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>전단계</td>
+                    <td {% if k==3 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>유병자</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <p><span>연령대 HDL콜레스테롤 평균수치는 <span style="font-weight: bold;">{{ hdlval }}mg/dL</span>,
+        </span>
+        <span>LDL콜레스테롤 평균수치는 <span style="font-weight: bold;">{{ ldlval }}mg/dL</span>, </span>
+        <span>트리글리세라이드 평균수치는 <span style="font-weight: bold;">{{ tgsval }}mg/dL, </span></span>
+    </p>
+    <p><span>총 콜레스테롤 평균수치는 <span style="font-weight: bold;">{{ tdlval }}mg/dL</span>입니다. </span>
+        <span>{{ session['uname'] }}님은 콜레스테롤 수치상 <span style="font-weight: bold;">이상지질혈증 유병자 {{ ejh }}</span></span>
+    </p>
+
+    <!-- 혈색소 result -->
+    <h5 style="margin-top:30px"><span>혈색소수치 분석결과</span></h5>
+    <table class="table table-bordered border-dark" style="font-size: 13px; margin-top:15px">
+        <tr>
+            <th style="width:auto">혈색소</th>
+            {% for hgdict in hgdict_list %}
+            <td align="center" class="item0" {% if loop.index==l %} style="background-color: lightpink; width: 7%; font-weight: bolder;
+        width: auto;" {% endif %}>{{ hgdict.혈색 }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>비율</th>
+            {% for hgdict in hgdict_list %}
+            <td align="center" class="item1" {% if loop.index==l %}
+                style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ hgdict.비율 }}%</td>
+            {% endfor %}
+        </tr>
+        <tr align="center">
+            <th>빈혈</th>
+            <td {% if l==1 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>유병자</td>
+            <td {% if l==2 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상</td>
+            <td {% if l==3 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>과다</td>
+        </tr>
+    </table>
+    <p><span>연령대 평균 혈색소수치는 <span style="font-weight: bold;">{{ hgval }}mg/dL</span>입니다.</span>
+    </p>
+
+    <!-- 요단백 result -->
+    <h5 style="margin-top:30px"><span>요단백 / 혈청크레아티닌수치 분석결과</span></h5>
+    <div class="row" style="margin-top:15px">
+        <div class="col">
+            <table class="table table-bordered border-dark" style="font-size: 13px;">
+                <tr>
+                    <th style="width:auto">요단백</th>
+                    {% for ydb in ydbdict %}
+                    <td align="center" class="item0" {% if loop.index==m %} style="background-color: lightpink; width: 7%; font-weight: bolder;
+                width: auto;" {% endif %}>{{ ydb.요단백 }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>비율</th>
+                    {% for ydb in ydbdict %}
+                    <td align="center" class="item1" {% if loop.index==m %}
+                        style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ ydb.비율 }}%</td>
+                    {% endfor %}
+                </tr>
+                <tr align="center">
+                    <th>신장질환</th>
+                    <td colspan="2" {% if 1 <=m <=2 %} style="background-color: lightpink; font-weight: bolder;" {%
+                        endif %}>정상</td>
+                    <td colspan="4" {% if 3 <=m <=6 %} style="background-color: lightpink; font-weight: bolder;" {%
+                        endif %}>유병자</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table table-bordered border-dark" style="font-size: 13px;">
+                <tr>
+                    <th style="width:auto">혈청크레아티닌</th>
+                    {% for hcc in hcc_list %}
+                    <td align="center" class="item0" {% if loop.index==n %} style="background-color: lightpink; width: 7%; font-weight: bolder;
+                width: auto;" {% endif %}>{{ hcc.혈청 }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>비율</th>
+                    {% for hcc in hcc_list %}
+                    <td align="center" class="item1" {% if loop.index==n %}
+                        style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ hcc.비율 }}%</td>
+                    {% endfor %}
+                </tr>
+                <tr align="center">
+                    <th>신장질환</th>
+                    <td {% if n==1 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상</td>
+                    <td {% if n==2 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>전단계</td>
+                    <td {% if n==3 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>유병자</td>
+                </tr>
+            </table>
+        </div>
+        <p><span>{{ session['uname'] }}님의 연령대 요단백 비정상률은 <span style="font-weight: bold;">{{ ydb_abnormal
+                    }}%</span>입니다.</span></p>
+    </div>
+
+    <!-- 간질환 요소 -->
+    <h5 style="margin-top:20px"><span>AST / ALT / r-GTP수치 분석결과</span></h5>
+    <div class="row">
+        <div class="col">
+            <table class="table table-bordered border-dark" style="font-size: 13px;">
+                <tr>
+                    <th style="width:auto">SGOT(AST)</th>
+                    {% for ast in ast_list %}
+                    <td align="center" class="item0" {% if loop.index==o %} style="background-color: lightpink; width: 7%; font-weight: bolder;
+                width: auto;" {% endif %}>{{ ast.혈청 }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>비율</th>
+                    {% for ast in ast_list %}
+                    <td align="center" class="item1" {% if loop.index==o %}
+                        style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ ast.비율 }}%</td>
+                    {% endfor %}
+                </tr>
+                <tr align="center">
+                    <th>간질환</th>
+                    <td {% if o==1 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상</td>
+                    <td {% if o==2 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>유병자</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table table-bordered border-dark" style="font-size: 13px;">
+                <tr>
+                    <th style="width:auto">SGPT(ALT)</th>
+                    {% for alt in alt_list %}
+                    <td align="center" class="item0" {% if loop.index==p %} style="background-color: lightpink; width: 7%; font-weight: bolder;
+                width: auto;" {% endif %}>{{ alt.혈청 }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>비율</th>
+                    {% for alt in alt_list %}
+                    <td align="center" class="item1" {% if loop.index==p %}
+                        style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ alt.비율 }}%</td>
+                    {% endfor %}
+                </tr>
+                <tr align="center">
+                    <th>간질환</th>
+                    <td {% if p==1 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상</td>
+                    <td {% if p==2 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>유병자</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table table-bordered border-dark" style="font-size: 13px;">
+                <tr>
+                    <th style="width:auto">감마GTP</th>
+                    {% for gtp in gtp_list %}
+                    <td align="center" class="item0" {% if loop.index==q %} style="background-color: lightpink; width: 7%; font-weight: bolder;
+                width: auto;" {% endif %}>{{ gtp.혈청 }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>비율</th>
+                    {% for gtp in gtp_list %}
+                    <td align="center" class="item1" {% if loop.index==q %}
+                        style="background-color: lightpink; font-weight: bolder;" {% endif %}>{{ gtp.비율 }}%</td>
+                    {% endfor %}
+                </tr>
+                <tr align="center">
+                    <th>간질환</th>
+                    <td {% if q==1 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상</td>
+                    <td {% if q==2 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>유병자</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <p><span>{{ session['uname'] }}님의 연령대 평균 AST수치는 <span style="font-weight: bold;">{{ astval }}mg/dL</span>, </span>
+        <span>평균 ALT수치는 <span style="font-weight: bold;">{{ altval }}mg/dL</span>, </span>
+        <span>평균 감마GTP수치는 <span style="font-weight: bold;">{{ gtpval }}mg/dL</span>입니다. </span>
+    </p>
+    <!-- 대상자 건강 상태 -->
+    <h5 style="margin-top:20px"><span>종합건강상태</span></h5>
+    <table class="table table-bordered border-dark" style="font-size: 13px; margin-top: 15px;">
+        <tr align="center">
+            <th>종합점수</th>
+            <td {% if r <=5 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>정상</td>
+            <td {% if 6 <=r <=11 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>경고</td>
+            <td {% if 12 <=r <=17 %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>위험</td>
+            <td {% if 18 <=r %} style="background-color: lightpink; font-weight: bolder;" {% endif %}>매우 위험</td>
+        </tr>
+    </table>
+    <p>desc. 종합건강상태는 위 분석 결과를 기반으로 하여 종합한 결과입니다.</p>
+
+    <!-- 재실행/저장버튼 -->
+    <form action="/myhealth/disease" method="post">
+        <p style="text-align: end;"><button type="submit">저장</button>
+            <button onclick="location.href='/myhealth/disease'" style="margin-left:10px">재실행</button>
+            <span style="display: none;"><input name="bp1" value="{{bp1}}"><input name="bp2" value="{{bp2}}"><input
+                    name="bs" value="{{bs}}"><input name="height" value="{{height}}"><input name="weight" value="{{weight}}">
+                    <input name="waist" value="{{waist}}"><input name="eye_left" value="{{eye_l}}"><input name="eye_right" value="{{eye_R}}">
+                    <input name="sound_L" value="{{sound_L}}"><input name="sound_R" value="{{sound_R}}">
+                <input name="tg" value="{{tg}}"><input name="hdl" value="{{hdl}}"><input name="ldl"
+                    value="{{ldl}}"><input name="tdl" value="{{tdl}}">
+                <input name="hg" value="{{hg}}"><input name="up" value="{{up}}"><input name="bc" value="{{bc}}"><input
+                    name="ast" value="{{ast}}">
+                <input name="alt" value="{{alt}}"><input name="gtp" value="{{gtp}}"><input name="smoke"
+                    value="{{smk}}"><input name="drink" value="{{drk}}">
+                <input name="save" value="save"><input type="text" name="uid" style="height:80%"
+                    value="{{ session['uid'] }}">
+            </span></span>
+        </p>
+    </form>
+</div>
+{% endblock %}
